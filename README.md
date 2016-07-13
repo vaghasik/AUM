@@ -10,7 +10,10 @@ ng-show on two button click https://codepen.io/SusanneLundblad/pen/dabcw  http:/
 validation number with dacimal and '-' value http://jsfiddle.net/KGd8K/
 Validation form http://jsfiddle.net/scottux/f7MzW/
 
+Clear the previous input once the selection is selected http://jsfiddle.net/jb1j3w7x/12/ http://jsfiddle.net/jb1j3w7x/5/
+
 radio select ng-show https://jsfiddle.net/48fsbqvb/37/
 
+remove row in table with checkbox https://jsfiddle.net/9qttf7ph/65/
 table row add/remove on select http://plnkr.co/edit/ncIzToMhtglmSp2fVXfk?p=preview
 Add/Remove table row and column dynamically http://codepen.io/kizmeth/pen/AufCm?editors=1010
