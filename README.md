@@ -17,3 +17,6 @@ radio select ng-show https://jsfiddle.net/48fsbqvb/37/
 remove row in table with checkbox https://jsfiddle.net/9qttf7ph/65/
 table row add/remove on select http://plnkr.co/edit/ncIzToMhtglmSp2fVXfk?p=preview
 Add/Remove table row and column dynamically http://codepen.io/kizmeth/pen/AufCm?editors=1010
+
+----------------
+for conlsole test modale in angularjs use chrome AngularJS Batarang (Stable)
