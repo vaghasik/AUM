@@ -9,6 +9,8 @@ ng-show on two button click https://codepen.io/SusanneLundblad/pen/dabcw  http:/
 
 validation number with dacimal and '-' value http://jsfiddle.net/KGd8K/
 Validation form http://jsfiddle.net/scottux/f7MzW/
+wholeNumberOnly in input "text" http://codepen.io/anon/pen/KFsej
+decimalNumberOnly in input "text" with validation http://jsfiddle.net/vfsHX/
 
 Clear the previous input once the selection is selected http://jsfiddle.net/jb1j3w7x/12/ http://jsfiddle.net/jb1j3w7x/5/
 
