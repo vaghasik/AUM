@@ -14,6 +14,7 @@ decimalNumberOnly in input "text" with validation http://jsfiddle.net/vfsHX/
 negative & decimal in input "text" http://jsfiddle.net/jamseernj/6guy3sp9/
 whole number only with input 'number' and no mouse will and key up/down http://jsfiddle.net/6guy3sp9/738/
 decimal only with input 'number' and no mouse will and key up/down http://jsfiddle.net/6guy3sp9/737/
+//**** https://css-tricks.com/snippets/css/turn-off-number-input-spinners/
 
 Clear the previous input once the selection is selected http://jsfiddle.net/jb1j3w7x/12/ http://jsfiddle.net/jb1j3w7x/5/
 
