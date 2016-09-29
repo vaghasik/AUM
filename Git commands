@@ -1,0 +1,128 @@
+Git Workflow Steps
+We are using git Fork & Pull Model(see different workflows @https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow, https://help.github.com/articles/fork-a-repo/). Everyone works on his/her own private git repository with full permission.  Here is high level workflow lifecycle for each new feature development or bug fixing:
+Your working items:
+create your own working branch based of integration repository branch
+work on your branch with new codes
+commit your code changes
+push your changes to your remote repository
+file pull request against integration repository
+Other team member working items:  
+review your code changes
+you may go back and continue to work on your branch to incorporate code changes from reviewing feedback 
+merge your code changes into integration repository
+Your additional working items
+after notified of your codes merged, you can trash your working branch
+enter another development cycle
+Here are more details. 
+Fork your own repository
+open https://github.wdf.sap.corp/ARIBA-BOM/ARIBA-BOM, 
+click 'Fork' at top right of page
+choose ARIBA-BOM
+fork your own repository
+Clone your remote repository to your local machine
+Click your profile image at top right of https://github.wdf.sap.corp/ARIBA-BOM/ARIBA-BOM
+Choose setting from pulldown menu
+Click the Repositories at left panel
+Click your new private repository at right panel
+Copy HTTPS or SSH URL at bottom right of UI
+Run following command to clone your repository to your local machine
+git clone git@github.wdf.sap.corp:ixxxxxx/ARIBA-BOM.git [yourOwnDir]
+Add integration repository to your local GIT env
+run the following command to add remote integration repository to your GIT env on your local machine
+git remote add upstream git@github.wdf.sap.corp:ARIBA-BOM/ARIBA-BOM.git
+git remote -v
+you'll see both your own repository and our integration repository
+Create working branch
+Currently, our DMS release codes are in master branch of https://github.wdf.sap.corp/ARIBA-BOM/ARIBA-BOM, your new working branch should be based on the latest master branch to avoid future conflict merging.
+sync your local integration repository with remote one
+git fetch upstream
+create new branch based off  master branch in integration repository
+git checkout -b yourBranchName upstream/master
+Work on your own branch
+Run 'git status' to make sure your working branch is the one you intend to work on. 
+Use any IDE to add new source code file, modify existing file....
+Use following GIT command to stage your local changes to your local repository 
+git add FileName
+Add new file or stage modified file to git
+git rm  existingFileName
+Remove the existing file in git
+Commit & sync your local branch for medium or minor feature or code development
+Warning: Please DON'T run step 6 after you run step 7 on the SAME local branch, otherwise it'll totally mess up your branch history which causes your merge very difficult !!!.
+This step is for medium or minor feature or code development. Most of time,  you just follow this step commit and sync with remote latest codes. 
+Once you finish your coding and testing on your local branch, you are ready to deliver your codes and merge them into remote integration repository
+you can commit your changes as follow
+git commit -m "your changes description here" 
+sync your codes with remote
+git rebase upstream/master
+This command syncs your local repository with remote one and puts your new codes on top of the latest codes.
+If there is any conflict above, you need resolving it(see below for conflict resolving) and run git add to stage your new changes
+after you resolve all conflict as the step c), continue to rebase as
+git rebase --continue
+At this point, you may need regressing your testings to make sure merged codes still work as you expect. 
+run git log to check out your new commit
+skip step 7 and proceed to step 8
+Commit & sync your local branch for major feature development
+Warning: Please DON'T run step 6 after you run step 7 on the SAME local branch, otherwise it'll totally mess up your branch history which causes your merge very difficult !!!.
+This step is for major feature development and you want to keep the code change history logs along with delivered codes. Otherwise, please follow step 6 for minor feature or code changes commit and sync! This step should be only run after you finish your development and your are ready to deliver your codes. Please don't run this step in the middle your development. If you really want to sync your codes with remote, please follow step 6 instead. Once you pull to your local branch, never run git rebase on the same branch in step 6
+Once you finish your coding and testing on your local branch, you are ready to deliver your codes and merge them into remote integration repository
+sync your codes with remote
+git pull upstream
+This command syncs your local repository with remote one and merges new codes into your local branch.
+If there is any conflict above, you need resolving it(see below for conflict resolving) and run git add to stage your new changes
+At this point, you may need regressing your testings to make sure merged codes still work as you expect.
+if no conflict or after resolved all conflicts and passed all testings, you can commit your changes as follow
+git commit -m "your changes description here" 
+run git log to check out your new commit
+Push your new local branch to your private remote repository
+git push origin yourBranchName:refs/heads/yourBranchName            (or following simple command)
+git push origin      (if you are already in the branch you want to deliver)
+File pull request 
+open your remote repository @https://github.wdf.sap.corp/ixxxxxx/ARIBA-BOM
+Click 'Pull requests' at right panel
+Click 'New pull request' at top right 
+Make sure the following info on the new ui
+base fork is 'ARIBA-BOM/ARIBA-BOM'
+base is 'master'
+head fork is 'ixxxxxx/ARIBA-BOM' 
+compare is 'yourBranchName'
+otherwise, you can change from pull down menu
+you can review your new changes here
+click 'create pull request'
+Review change
+New pull request can be reviewed @github directly or SAP review-ninja
+Merge pull request
+DMS admin can simply click on github to merge pull request into our integration repository after code reviewing finish
+Recycle your local branch
+you can delete your branch in local repository
+git delete -d YourBranchName
+git delete -d -r YourBranchName
+you can delete your local remote branch and its corresponding branch in remote repository
+this can be done @ https://github.wdf.sap.corp/ixxxxxx/ARIBA-BOM
+or you can run 
+git push origin --delete yourBranchName
+git push origin :refs/heads/yourBranchName 
+
+Git Tools
+There are a lot open source GIT tools you can use for your daily git job.  Some are mentioned in SM - Getting started with SAP GitHub and Git step 5. Personally, I prefer to git bash/git gui which are available for our major dev platform such as Max OS X, Linux and Window environment. It's lightweight with simple command line and gui interface to help you fulfill all your daily GIT operations.  I also used atlassian source tree https://www.sourcetreeapp.com/ before. Again, I like git bash/gui's lightweight. You can choose any tool you like to do your daily GIT job listed above.
+Git merge tool
+Git has some buidin mergetools already. And GIT is an open environment, you can easily plug in your preferred mergetool.  If you are more familiar with p4merge. you can add it as follows:
+git config --global merge.tool p4merge
+git config --global mergetool.p4merge  'YourP4mergePath \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"'
+Git diff tool
+ You can run git diff to learn your local changes. You can also config gui diff tool if you like 
+git config --global diff.tool mydifftool
+git config --global difftool.mydifftool.cmd "YourDiffToolPath \$LOCAL \$REMOTE\"
+ 
+Git Status
+You may need running the above command constantly to learn your current workspace status. It shows you the info such as:
+current work branch
+remote tracking branch(your local branch's base branch)
+newly added files
+newly modified file
+untracked files in your workspace
+Git log
+You can run git log to learn the change histories of the current branch, other branch, any workspace file
+Git documents
+There are a lot of GIT documents online
+https://git-scm.com/doc
+detailed GIT command line @ https://www.kernel.org/pub/software/scm/git/docs/
