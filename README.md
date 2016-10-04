@@ -30,7 +30,9 @@ filter on ng-repeate with select option
 http://jsfiddle.net/seu5aL8f/12/ 
 http://jsfiddle.net/seu5aL8f/20/
 http://jsfiddle.net/seu5aL8f/21/
-
+----------js string 
+revers string https://jsfiddle.net/wz4xr3aq/
 ----------------
 for conlsole test modale in angularjs use chrome AngularJS Batarang (Stable)
 document.getElementById('listofChoicetext').value="";
+----------
