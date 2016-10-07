@@ -1,0 +1,16 @@
+<span>
+    <div ng-style='showLessStyle' ng-hide='expanded' ng-transclude>
+    </div>
+    <div ng-show='expanded' ng-transclude>
+    </div>
+    <div ng-show="showToggle">
+        <span ng-hide='expanded || !expandable'><a ng-click='expanded = !expanded'>Show more</a></span>
+        <span ng-show='expanded && expandable'><a ng-click='expanded = !expanded'>Show less</a></span>
+    </div>
+</span>
+
+
+<!-- use as -->
+<div show-more show-more-height='150'>
+    <div class='showMoreContent'></div>
+</div>
